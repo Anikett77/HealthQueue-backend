@@ -2,13 +2,7 @@ require("dotenv").config();
 const app = require("./src/app");
 const mongoose = require("mongoose");
 
-dotenv.config();
 
-const app = express();
-app.use(express.json());
-
-// ✅ IMPORT ROUTE
-const appointmentRoutes = require("./routes/appointmentRoutes");
 // ROOT CHECK
 app.get("/", (req, res) => {
   res.send("Health Queue API running 🚑");
