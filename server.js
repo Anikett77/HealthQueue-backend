@@ -1,6 +1,7 @@
 require("dotenv").config();
 const app = require("./src/app");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 
 // ROOT CHECK
@@ -23,6 +24,14 @@ mongoose.connect(process.env.MONGO_URI)
     console.error("❌ MongoDB Connection Error:", err.message);
     process.exit(1);
   });
+
+app.use(cors({
+  origin: [
+    "http://localhost:5173",          // local frontend
+    "https://health-queue-backend.vercel.app" // deployed frontend
+  ],
+  credentials: true
+}));
 
 // Start server
 const PORT = process.env.PORT || 5000;
